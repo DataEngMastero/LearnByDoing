@@ -9,9 +9,9 @@ def gloabl_create_database():
         conn.set_session(autocommit=True)
         cur = conn.cursor()
 
-        cur.execute(f"DROP DATABASE {dbname}")
+        cur.execute(f"DROP DATABASE {config.DBNAME}")
         print('Drop Statement Executed!')
-        cur.execute(f"CREATE DATABASE {dbname}")
+        cur.execute(f"CREATE DATABASE {config.DBNAME}")
         print('Create Statement Executed!')
 
         conn.close()
