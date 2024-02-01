@@ -4,7 +4,7 @@ import collections
 conf = SparkConf().setMaster("local").setAppName("WordCount")
 sc = SparkContext(conf=conf)
 
-lines = sc.textFile("csvs/Book.txt")
+lines = sc.textFile("../csvs/Book.txt")
 words = lines.flatMap(lambda x: x.split())
 wordCounts = words.countByValue()
 

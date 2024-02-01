@@ -11,10 +11,10 @@ def parseLine(x):
     temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
     return (station_id, entry_type, temperature)
 
-lines = sc.textFile("csvs/1800.csv")
+lines = sc.textFile("../csvs/1800.csv")
 rdd = lines.map(parseLine)
-minTemps = rdd.filter(lambda x: "TMAX" in x[1])
-stationTemps = minTemps.map(lambda x: (x[0], x[2])).reduceByKey(lambda x, y: max(x,y))
+minTemps = rdd.filter(lambda x: "TMIN" in x[1])
+stationTemps = minTemps.map(lambda x: (x[0], x[2])).reduceByKey(lambda x, y: min(x,y))
 results = stationTemps.collect()
 
 for result in results:

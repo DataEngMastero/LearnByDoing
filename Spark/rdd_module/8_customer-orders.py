@@ -11,7 +11,7 @@ def parseLines(line):
     return (customer_id, price)
 
 
-lines = sc.textFile("csvs/customer-orders.csv")
+lines = sc.textFile("../csvs/customer-orders.csv")
 rdd = lines.map(parseLines)
 customerPrice = rdd.reduceByKey(lambda x, y: x + y)
 customerPriceSorted = customerPrice.map(lambda x: (x[1], x[0])).sortByKey()
